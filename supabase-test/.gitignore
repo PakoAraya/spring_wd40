@@ -1,0 +1,56 @@
+### --- CONFIGURATION FILES (SECURITY) ---
+# Ignore configuration files that usually contain passwords, tokens, or secrets
+application.properties
+application.yml
+application-*.properties
+application-*.yml
+!application-common.properties
+local.properties
+
+### --- SPRING INITIALZR BASE ---
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS (Spring Tool Suite) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### --- MAVEN / GRADLE EXTRAS ---
+.mvn/timing.properties
+.gradle
+/build/
+
+### --- LOGS AND TEMPORARY FILES ---
+*.log
+logs/
+temp/
+.DS_Store
+Thumbs.db
