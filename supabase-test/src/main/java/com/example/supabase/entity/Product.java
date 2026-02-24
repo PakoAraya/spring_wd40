@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 //Entity representing the 'products' table in the database.
 @Entity
-@Table(name = "products")
+@Table(name = "products", schema = "littlestore")
 public class Product {
 
   @Id
