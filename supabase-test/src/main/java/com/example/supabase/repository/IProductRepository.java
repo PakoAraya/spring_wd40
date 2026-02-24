@@ -1,4 +1,13 @@
 package com.example.supabase.repository;
 
-public interface IProductRepository {
+import com.example.supabase.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface IProductRepository extends JpaRepository<Product, Long> {
+  // Custom query method example: Find products by category
+  List<Product> findByCategory(String category);
 }
