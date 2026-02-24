@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SupabaseTestApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SupabaseTestApplication.class, args);
 	}
 
