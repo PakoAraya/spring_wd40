@@ -20,7 +20,7 @@ public class ProductService {
   private IProductRepository productRepository;
 
   /** Retrieves all products from the database. */
-  public List<Product> findAll() {
+  public List<Product> findAllProducts() {
     logger.info("Fetching all products");
     List<Product> products = productRepository.findAll();
     logger.info("Total products retrieved: {}", products.size());
@@ -28,29 +28,27 @@ public class ProductService {
   }
 
   /** Saves a new product or updates an existing one. */
-  public Product save(Product product) {
+  public Product saveProduct(Product product) {
     logger.info("Saving product: {}", product.getName());
     Product savedProduct = productRepository.save(product);
     logger.info("Product saved successfully with ID: {}", savedProduct.getId());
     return savedProduct;
   }
 
-  /** Deletes a product entity. */
-  public void delete(Product product) {
-    logger.warn("Deleting product entity: {}", product);
-    productRepository.delete(product);
-    logger.info("Product deleted successfully");
-  }
-
   /** Deletes a product by its unique ID. */
-  public void deleteById(Long id) {
+  public void deleteProductById(Long id) {
     logger.warn("Attempting to delete product with ID: {}", id);
-    productRepository.deleteById(id);
-    logger.info("Deletion command executed for ID: {}", id);
+    // Optional: Check if it exists before deleting to avoid errors
+    if (productRepository.existsById(id)) {
+      productRepository.deleteById(id);
+      logger.info("Product with ID: {} deleted successfully", id);
+    } else {
+      logger.error("Cannot delete. Product with ID: {} NOT FOUND", id);
+    }
   }
 
   /** Finds a product by its ID. */
-  public Optional<Product> findById(Long id) {
+  public Optional<Product> findProductById(Long id) {
     logger.info("Searching for product with ID: {}", id);
     Optional<Product> product = productRepository.findById(id);
 
@@ -62,4 +60,17 @@ public class ProductService {
 
     return product;
   }
+
+  public List<Product> findProductsByCategory(String category) {
+    logger.info("Searching products by category: {}", category);
+    // Call the fixed repository method
+    return productRepository.findByCategory(category);
+  }
+
+  /** Finds products by name (case-insensitive search). */
+  public List<Product> findProductsByName(String name) {
+    logger.info("Searching products containing: {}", name);
+    return productRepository.findByNameContainingIgnoreCase(name);
+  }
+
 }

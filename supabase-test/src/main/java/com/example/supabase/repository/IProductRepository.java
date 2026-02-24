@@ -10,4 +10,9 @@ import java.util.List;
 public interface IProductRepository extends JpaRepository<Product, Long> {
   // Custom query method example: Find products by category
   List<Product> findByCategory(String category);
+
+  /** Find products by name containing a string.
+   * SQL: SELECT * FROM products WHERE name LIKE %?% */
+  List<Product> findByNameContainingIgnoreCase(String name);
+
 }
